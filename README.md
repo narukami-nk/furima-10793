@@ -31,7 +31,6 @@ Things you may want to cover:
 | nickname            | string     | null: false                    |
 | email               | string     | null: false, unique: true      |
 | encrypted_password  | string     | null: false                    |
-| nickname            | string     | null: false                    |
 | first_name          | string     | null: false                    |
 | last_name           | string     | null: false                    |
 | first_name_kana     | string     | null: false                    |
@@ -40,7 +39,6 @@ Things you may want to cover:
 
 - has_many : items
 - has_many : orders
-- belongs_to_active_hash :birth_day
 
 ## itemsテーブル
 | Column               | Type       | Options                        |
@@ -53,10 +51,10 @@ Things you may want to cover:
 | prefecture_id        | integer    | null: false                    |
 | shipping_period_id   | integer    | null: false                    |
 | price                | integer    | null: false                    |
-| users                | references | null: false, foreign_key: true |
+| user                 | references | null: false, foreign_key: true |
 
 - belongs_to : user
-- has_many : orders 
+- has_one  : order
 - belongs_to_active_hash :category
 - belongs_to_active_hash :condition
 - belongs_to_active_hash :delivery_type
@@ -67,9 +65,8 @@ Things you may want to cover:
 ## ordersテーブル
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
-| users                | references | null: false  foreign_key: true |
-| items                | references | null: false  foreign_key: true |
-| addresses            | references | null: false  foreign_key: true |
+| user                 | references | null: false  foreign_key: true |
+| item                 | references | null: false  foreign_key: true |
 - belongs_to : user
 - belongs_to : item
 - has_one : addresses
@@ -77,12 +74,12 @@ Things you may want to cover:
 ## addressesテーブル
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
-| post_code           | integer    | null: false                    |
+| post_code           | string     | null: false                    |
 | prefecture_id       | integer    | null: false                    |
-| municipality        | text       | null: false                    |
-| address_number      | text       | null: false                    |
-| building            | text       | null: false                    |
-| telephon_number     | string     | null: false                    |
+| municipality        | string     | null: false                    |
+| address_number      | string     | null: false                    |
+| building            | string     | null: false                    |
+| telephone_number    | string     | null: false                    |
 | order               | references | null: false  foreign_key: true |
-- has_one : orders
+- belongs_to : orders
 - belongs_to_active_hash :prefecture
