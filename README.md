@@ -69,7 +69,7 @@ Things you may want to cover:
 | item                 | references | null: false  foreign_key: true |
 - belongs_to : user
 - belongs_to : item
-- has_one : addresses
+- has_one : address
 
 ## addressesテーブル
 | Column              | Type       | Options                        |
@@ -78,8 +78,8 @@ Things you may want to cover:
 | prefecture_id       | integer    | null: false                    |
 | municipality        | string     | null: false                    |
 | address_number      | string     | null: false                    |
-| building            | string     | null: false                    |
+| building            | string     |                                |
 | telephone_number    | string     | null: false                    |
 | order               | references | null: false  foreign_key: true |
-- belongs_to : orders
+- belongs_to : order
 - belongs_to_active_hash :prefecture
