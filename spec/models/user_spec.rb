@@ -24,6 +24,12 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
 
+      it 'emailに＠がない時' do
+        @user.email = 'aaaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
+
       it 'emailが別のユーザーと重複している時' do
         @user.save
         another_user = FactoryBot.build(:user)
@@ -34,6 +40,7 @@ RSpec.describe User, type: :model do
 
       it 'passwordが空の時' do
         @user.password = ''
+        @user.password_confirmation = @user.password
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
@@ -43,6 +50,13 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = @user.password
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
+      end
+
+      it 'passwordが全角の時' do
+        @user.password = 'ああああああああああ'
+        @user.password_confirmation = @user.password
+        binding.pry
+        expect(@user.errors.full_messages).to include("Password is invalid. Include both letters and numbers")
       end
 
       it 'passwordが英字のみの時' do
