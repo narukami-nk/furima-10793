@@ -55,7 +55,6 @@ RSpec.describe User, type: :model do
       it 'passwordが全角の時' do
         @user.password = 'ああああああああああ'
         @user.password_confirmation = @user.password
-        binding.pry
         expect(@user.errors.full_messages).to include("Password is invalid. Include both letters and numbers")
       end
 
