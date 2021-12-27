@@ -27,7 +27,7 @@ RSpec.describe User, type: :model do
       it 'emailに＠がない時' do
         @user.email = 'aaaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
 
       it 'emailが別のユーザーと重複している時' do
@@ -55,7 +55,7 @@ RSpec.describe User, type: :model do
       it 'passwordが全角の時' do
         @user.password = 'ああああああああああ'
         @user.password_confirmation = @user.password
-        expect(@user.errors.full_messages).to include("Password is invalid. Include both letters and numbers")
+        expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
       end
 
       it 'passwordが英字のみの時' do
