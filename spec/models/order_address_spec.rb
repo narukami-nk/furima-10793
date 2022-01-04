@@ -5,7 +5,7 @@ RSpec.describe OrderAddress, type: :model do
     before do
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
-      @order_address = FactoryBot.build(:order_address, user_id:user.id, item_id:item.id)
+      @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
       sleep 0.05
     end
 
@@ -17,7 +17,6 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.building = ''
         expect(@order_address).to be_valid
       end
-
     end
 
     context '購入処理ができない場合' do
